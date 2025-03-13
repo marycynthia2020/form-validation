@@ -18,15 +18,25 @@ function register(e) {
     gender = document.getElementById("female").value;
   }
 
+  console.log(gender);
+
   if (
     Fname == "" ||
     Lname == "" ||
     email == "" ||
     address == "" ||
     phoneNumber == "" ||
-    !gender
+    gender === undefined
   ) {
     document.getElementById("error").textContent = "All fields are required";
+  } else {
+    document.getElementById("heading").textContent =
+      "Your Registration is Successfull";
+    document.getElementById("error").textContent = "";
+    let item = document.getElementsByTagName("input");
+    for (let i = 0; i < item.length; i++) {
+      item[i].value = "";
+    }
   }
   if (Fname == "") {
     document.getElementById("Fname-error").textContent = "required";
@@ -50,14 +60,6 @@ function register(e) {
 
   if (!gender) {
     document.getElementById("gender-error").textContent = "required";
-  } else {
-    document.getElementById("heading").textContent =
-      "Your Registration is Successfull";
-    document.getElementById("error").textContent = "";
-    let item = document.getElementsByTagName("input");
-    for (let i = 0; i < item.length; i++) {
-      console.log((item[i].value = ""));
-    }
   }
 }
 
