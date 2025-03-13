@@ -58,7 +58,7 @@ function register(e) {
     document.getElementById("phone-error").textContent = "required";
   }
 
-  if (!gender) {
+  if (gender == undefined) {
     document.getElementById("gender-error").textContent = "required";
   }
 }
