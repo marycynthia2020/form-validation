@@ -1,8 +1,10 @@
 const registerBtn = document.getElementById("submit");
+const bodyContent = document.getElementsByTagName("body")[0];
 
 registerBtn.addEventListener("click", register);
 
 function register(e) {
+  let user;
   e.preventDefault();
 
   const Fname = document.getElementById("Fname").value;
@@ -30,9 +32,22 @@ function register(e) {
   ) {
     document.getElementById("error").textContent = "All fields are required";
   } else {
+    let userData = {
+      firstName: Fname,
+      lastName: Lname,
+      email: email,
+      // id: Math.random(),
+    };
+
+    localStorage.setItem(`user ${userData.email}`, JSON.stringify(userData));
+
+    user = JSON.parse(localStorage.getItem(`user ${userData.email}`));
+    console.log(user);
     document.getElementById("heading").textContent =
       "Your Registration is Successfull";
     document.getElementById("error").textContent = "";
+    window.location.href = "login.html";
+
     let item = document.getElementsByTagName("input");
     for (let i = 0; i < item.length; i++) {
       item[i].value = "";
@@ -63,6 +78,9 @@ function register(e) {
   }
 }
 
+console.log(localStorage.getItem(`user ${email}`));
+
 function clearField(selector) {
   document.getElementById(selector).textContent = "";
 }
+// console.log(localStorage.getItem(`user ${userData.email}`));
